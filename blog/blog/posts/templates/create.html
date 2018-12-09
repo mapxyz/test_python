@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% load bootstrap3 %}
+
+{% block Content %}
+
+   <form action="/post/create/" method="post">
+        {% csrf_token %}
+        {% bootstrap_form CreateNewsForm %}
+
+        <div class="row">
+            <input type="submit" value="Сохранить"/>
+        </div>
+    </form>
+
+{% endblock %}

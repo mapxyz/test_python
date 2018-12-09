@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+
+{% block Content %}
+
+    <a  href="/post/create"   class="btn btn-primary">Создать пост</a>
+
+
+    {%  if news.lenght %}
+<div class="product-grid">
+    <ul class="row">
+        {% for item in news %}
+        <li class="col-sm-4 prod ">
+            <div class="padding">
+
+                <div class="left">
+                    <div class="name maxheight-cat"  ><a
+                            href="{{ item.getLink }}">{{ item.title }}</a></div>
+
+
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+
+
+    </ul>
+</div>
+
+
+<div class="pagination">
+      <div class="links">
+    {% if news.has_previous %}
+            <a href="?page={{ news.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ news.number }} из {{ news.paginator.num_pages }}
+
+        </span>
+
+        {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }}">Следующая</a>
+        {% endif %}
+    </div>
+
+</div>
+    {% else  %}<div class="row"> Еще нет записей</div>
+{% endif %}
+
+{% endblock %}

@@ -21,4 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('login/', auth_views.auth, name='login'),
+    path('blog/manager/', views.manager, name='manager'),
+    path('post/create/', views.create, name='create'),
+    path(r'^post\/view\/(?P<id>[0-9]+)$', views.view, name='view'),
 ]
