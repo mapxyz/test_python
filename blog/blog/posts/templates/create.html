@@ -3,7 +3,11 @@
 
 {% block Content %}
 
-   <form action="/post/create/" method="post">
+    {%  if id %}
+        <form action="/post/edite/{{ id }}" method="post">
+    {% else %}
+        <form action="/post/create/" method="post">
+    {% endif %}
         {% csrf_token %}
         {% bootstrap_form CreateNewsForm %}
 

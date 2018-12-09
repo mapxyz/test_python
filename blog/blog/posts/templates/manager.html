@@ -3,49 +3,55 @@
 
 {% block Content %}
 
-    <a  href="/post/create"   class="btn btn-primary">Создать пост</a>
+    <a href="/post/create" class="btn btn-primary">Создать пост</a>
 
 
-    {%  if news.lenght %}
-<div class="product-grid">
-    <ul class="row">
-        {% for item in news %}
-        <li class="col-sm-4 prod ">
-            <div class="padding">
+    {% if news %}
+        <div class="product-grid">
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Название</th>
+                    <th>Дата</th>
+                    <th></th>
+                </tr>
+                {% for item in news %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td><a href="{{ item.getLink }}">{{ item.title }}</a></td>
+                        <td>{{ item.getDateFormatted }}</td>
+                        <td>
+                            <a href="/post/view/{{ item.id }}" class="btn btn-primary">Смотреть</a>
+                            <a href="/post/delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
+                            <a href="/post/edite/{{ item.id }}" class="btn btn-warning">Редактировать</a>
+                        </td>
+                    </tr>
+                {% endfor %}
 
-                <div class="left">
-                    <div class="name maxheight-cat"  ><a
-                            href="{{ item.getLink }}">{{ item.title }}</a></div>
+
+            </table>
+        </div>
 
 
-                </div>
-            </div>
-        </li>
-        {% endfor %}
+        <div class="pagination">
+            <div class="links">
+                {% if news.has_previous %}
+                    <a href="?page={{ news.previous_page_number }}">Предыдущая</a>
+                {% endif %}
 
-
-    </ul>
-</div>
-
-
-<div class="pagination">
-      <div class="links">
-    {% if news.has_previous %}
-            <a href="?page={{ news.previous_page_number }}">Предыдущая</a>
-        {% endif %}
-
-        <span class="current">
+                <span class="current">
             Страница {{ news.number }} из {{ news.paginator.num_pages }}
 
         </span>
 
-        {% if news.has_next %}
-            <a href="?page={{ news.next_page_number }}">Следующая</a>
-        {% endif %}
-    </div>
+                {% if news.has_next %}
+                    <a href="?page={{ news.next_page_number }}">Следующая</a>
+                {% endif %}
+            </div>
 
-</div>
-    {% else  %}<div class="row"> Еще нет записей</div>
-{% endif %}
+        </div>
+    {% else %}
+        <div class="row"> Еще нет записей</div>
+    {% endif %}
 
 {% endblock %}

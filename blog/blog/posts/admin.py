@@ -1,3 +1,13 @@
 from django.contrib import admin
+from ..posts.models import *
+#from catalog.pages.forms import PageForm
 
-# Register your models here.
+
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+  pass
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+  pass

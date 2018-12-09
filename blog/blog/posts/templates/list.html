@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+
+{% block Content %}
+
+    <h1>Все посты</h1>
+
+
+    <div class="list-group">
+
+        {% for item in news %}
+
+
+            <li class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><a href="{{ item.getLink }}">{{ item.title }}</a></h5>
+                    <small>{{ item.getDateFormatted }}</small>
+                </div>
+                <p class="mb-1">{{ item.text | truncatewords_html:200  }}</p>
+                {% if current_user %}
+                    <small>
+
+                        {% if item.getAssing %}
+                            <label class="badge  badge-success assing" data-id="{{ item.user_id.id }}">Отписаться</label>
+                        {% else %}
+                            <label class="badge   badge-info   assing"
+                                   data-id="{{ item.user_id.id }}">Подписаться</label>
+                        {% endif %}
+                    </small>
+                {% endif %}
+
+            </li>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

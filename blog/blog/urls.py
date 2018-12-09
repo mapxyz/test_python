@@ -22,6 +22,12 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login/', auth_views.auth, name='login'),
     path('blog/manager/', views.manager, name='manager'),
+    path('blog/list/', views.list, name='list'),
+    path('blog/assing/', views.assing, name='assing'),
     path('post/create/', views.create, name='create'),
-    path(r'^post\/view\/(?P<id>[0-9]+)$', views.view, name='view'),
+    path('post/view/<int:id>', views.view, name='view'),
+    path('post/delete/<int:id>', views.delete, name='delete'),
+    path('post/edite/<int:id>', views.edite, name='edite'),
+    path('assing/set', views.setassing, name='setassing'),
+    path('assing/unset', views.unsetassing, name='unsetassing'),
 ]
