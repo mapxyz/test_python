@@ -17,7 +17,7 @@
                 dataType: 'json',
                 success: function(json) {
                     if (json.status) {
-                        that.removeClass('badge-info').addClass('badge-success');
+                        that.removeClass('badge-info').addClass('badge-success').html('отписаться');
                     }else{
                         alert('Чтото пошло не так')
                     }
@@ -31,7 +31,29 @@
                 dataType: 'json',
                 success: function(json) {
                     if (json.status) {
-                        that.addClass('badge-info').removeClass('badge-success');
+                        that.addClass('badge-info').removeClass('badge-success').html('подписаться');
+                    }else{
+                        alert('Чтото пошло не так')
+                    }
+
+                }
+            });
+        }
+        return false;
+    })
+
+
+
+    $('.setread').click(function(){
+        var that = $(this);
+        if($(this).hasClass('badge-info')){
+            $.ajax({
+                url: '/read/set',
+                data: {'news_id':   that.data('id')},
+                dataType: 'json',
+                success: function(json) {
+                    if (json.status) {
+                        that.addClass('badge-info').removeClass('badge-success').html('прочитано');
                     }else{
                         alert('Чтото пошло не так')
                     }

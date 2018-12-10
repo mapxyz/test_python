@@ -26,6 +26,13 @@
                             <label class="badge   badge-info   assing"
                                    data-id="{{ item.user_id.id }}">Подписаться</label>
                         {% endif %}
+
+                         {% if item.getRead %}
+                            <label class="badge  badge-success setread" data-id="{{ item.id }}">Прочитано</label>
+                        {% else %}
+                            <label class="badge   badge-info   setread"
+                                   data-id="{{ item.id }}">Отметить прочитанным</label>
+                        {% endif %}
                     </small>
                 {% endif %}
 

@@ -80,6 +80,18 @@ def view(request, id):
     return render(request, 'view.html', {'news': news})
 
 
+def setread(request):
+    try:
+        if request.method == 'GET':
+            news_id = request.GET.get('news_id', None)
+            if request.user.id and news_id:
+                Read.objects.create(user_id=request.user,
+                                            news_id=News.objects.get(id = news_id)).save()
+                return JsonResponse({'status': True})
+    except:
+        pass
+    return JsonResponse({'status': False})
+
 def setassing(request):
     try:
         if request.method == 'GET':

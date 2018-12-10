@@ -30,4 +30,5 @@ urlpatterns = [
     path('post/edite/<int:id>', views.edite, name='edite'),
     path('assing/set', views.setassing, name='setassing'),
     path('assing/unset', views.unsetassing, name='unsetassing'),
+    path('read/set', views.setread, name='setread'),
 ]
